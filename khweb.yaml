@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: khweb
-        image: sillydevils/khweb
+        image: sillydevils/khweb-jenkins
         ports:
         - containerPort: 80
         env:
