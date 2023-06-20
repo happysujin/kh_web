@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khweb-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: khweb
+  template:
+    metadata:
+      labels:
+        app: khweb
+    spec:
+      containers:
+      - name: khweb
+        image: sillydevils/khweb
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-yaml
+              key: host
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-yaml
+              key: db
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-yaml
+              key: user
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-yaml
+              key: pass
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: khweb-service
+spec:
+  selector:
+    app: khweb
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
