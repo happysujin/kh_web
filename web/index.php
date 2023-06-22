@@ -44,7 +44,8 @@
         margin: 0;
       }
       .nav2 {
-        background-color: #A9C7D2;
+        background-color: #FFB2D9
+        /*background-color: #A9C7D2;*/
         color: #808080;
         display: flex;
         justify-content: right;
