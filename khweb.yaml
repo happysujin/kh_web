@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: khweb-deployment
 spec:
+  volumes:
+  - name: khweb-log-volume
+    hostPath:
+      path: /var/log/khweb
   replicas: 4
   selector:
     matchLabels:
@@ -38,6 +42,9 @@ spec:
             secretKeyRef:
               name: db-secret-yaml
               key: pass
+        volumeMounts:
+        - name: khweb-log-volume
+          mountPath: /var/log/test
 
 ---
 apiVersion: v1
