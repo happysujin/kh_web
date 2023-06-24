@@ -3,10 +3,6 @@ kind: Deployment
 metadata:
   name: khweb-deployment
 spec:
-  volumes:
-  - name: khweb-log-volume
-    hostPath:
-      path: /var/log/khweb
   replicas: 4
   selector:
     matchLabels:
@@ -16,6 +12,10 @@ spec:
       labels:
         app: khweb
     spec:
+      volumes:
+      - name: khweb-log-volume
+        hostPath:
+          path: /var/log/khweb
       containers:
       - name: khweb
         image: sillydevils/khweb-jenkins
