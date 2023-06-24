@@ -211,11 +211,11 @@ AccessFileName .htaccess
 #
 
 
-LogFormat "FROM: %{X-Real-IP} LOG: %v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
-LogFormat "FROM: %{X-Real-IP} LOG: %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
-LogFormat "FROM: %{X-Real-IP} LOG: %h %l %u %t \"%r\" %>s %O" common
-LogFormat "FROM: %{X-Real-IP} LOG: %{Referer}i -> %U" referer
-LogFormat "FROM: %{X-Real-IP} LOG: %{User-agent}i" agent
+LogFormat "FROM: %{X-Forwarded-For}i LOG: %v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
+LogFormat "FROM: %{X-Forwarded-For}i LOG: %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "FROM: %{X-Forwarded-For}i LOG: %h %l %u %t \"%r\" %>s %O" common
+LogFormat "FROM: %{X-Forwarded-For}i LOG: %{Referer}i -> %U" referer
+LogFormat "FROM: %{X-Forwarded-For}i LOG: %{User-agent}i" agent
 
 CustomLog /var/log/test/access.log combined
 
